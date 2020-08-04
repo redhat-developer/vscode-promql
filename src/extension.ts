@@ -75,6 +75,11 @@ export async function activate(context: vscode.ExtensionContext) {
 		dispose() { }
 	};
 
+	const openURLCommandHandler = (URL: string) => {
+		vscode.env.openExternal(vscode.Uri.parse( URL, true));
+	};
+
+	context.subscriptions.push(vscode.commands.registerCommand("vscode-promql.openURL", openURLCommandHandler));
 
 	let serverExec: lspclient.Executable = {
 		command: serverPath,
